@@ -67,3 +67,8 @@ use this "ssh -T git@github.com" to test for the ssh github connection
 
 git remote add origin <REMOTE_REPOSITORY_URL>
 git push -u origin master
+
+
+git add .
+git commit -m "Customized Helm chart"
+git push
