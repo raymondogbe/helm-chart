@@ -20,3 +20,50 @@
   echo "Visit http://127.0.0.1:8080 to use your application"
   kubectl --namespace {{ .Release.Namespace }} port-forward $POD_NAME 8080:$CONTAINER_PORT
 {{- end }}
+
+
+
+Helm chart installation notes:
+Download HELM
+for linux:
+curl -L https://get.helm.sh/helm-v3.5.0-linux-amd64.tar.gz -o helm.tar.gz
+for mac
+curl -L https://get.helm.sh/helm-v3.5.0-darwin-amd64.tar.gz -o helm.tar.gz
+
+Extact
+tar -zxvf helm.tar.gz
+
+Move the helm Binary
+For linux:
+mv linux-amd64/helm /usr/local/bin/helm
+for mac:
+mv darwin-amd64/helm /usr/local/bin/helm
+
+verify
+helm version
+
+clean up
+rm helm.tar.gz && rm -r *-amd64
+
+Creating Helm chart:
+Create a directory:
+mkdir helm-web-app, cd helm-web-app
+helm create webapp
+
+Initialize a Git repository:
+git init
+git add .
+git commit -m "Initial Helm webapp chart"
+Once this is done, go create a new repository in your gitbub and then, follow the next steps
+
+Push to Remote repository
+git remote add origin git@github.com:raymondogbe/helm-chart.git
+git branch -M main
+git push -u origin main
+
+If the push gives an error, enter here "https://github.com/settings/keys" and insert you sshkey
+use this "cat ~/.ssh/id_rsa.pub" to get your ssh key
+use this "ssh -T git@github.com" to test for the ssh github connection
+
+git remote add origin <REMOTE_REPOSITORY_URL>
+git push -u origin master
